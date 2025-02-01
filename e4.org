@@ -1,0 +1,28 @@
+
+
+1 - Modifique a implementação da linguagem *CHECKED* de modo que a segunda expressão numa chamada de função,
+*(call $e_1$ $e_2$)*, seja tipada somente se o tipo da primeira expressão for de uma função.
+
+R: Disponivel no arquivo dcc019\checked\interpreter.rkt, ou na imagem Q1;
+
+2 - Especifique as regras para inferência de tipos das expressões *let* e *letrec*
+
+Let:
+R: Γ ⊢ exp1 : τ1 Γ,var:τ1 ⊢exp2:τ2 /  Γ ⊢ let var = exp1 in exp2 : τ2
+​
+​Letrec:
+R: ​Γ , var1 : τ1 → τ2,var2 : τ1 ⊢ exp1:τ2 Γ,var1 : τ1 → τ2 ⊢ exp2 : τ3 / ​Γ ⊢ letrec varl var2 = exp1 in exp2 : τ3
+​
+3- Usando as regras de inferência de tipos da linguagem *INFERRED*, infira os tipos de cada uma das expressões a seguir, caso exista:
+
+  - let x = 4 in (x 3)
+  R: Erro: x não poderá ser aplicado como uma função, pois é int.
+
+  - let f = proc (z) z in proc (x) -((f x), 1)
+  R: Tipo da expressão é (-> int int)
+
+  - let p = zero?(1) in if p then 88 else 99
+  R: O tipo da expressão é int;
+
+  - let p = proc (z) z in if p then 88 else 99
+  R: Erro: p é uma função, não um valor booleano
